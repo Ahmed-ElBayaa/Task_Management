@@ -1,0 +1,13 @@
+<div id="project-members">
+	
+		<p> choose from the list to assign project members to <%= @project.name%> </p>
+
+		<%= select_tag :project_members, 
+         options_from_collection_for_select(@members,"_id","name"),
+        prompt: 'add members to the project', id: :select_members%>
+
+		<%=form_tag create_members_project_path, method: :put, id: :members_list do%>
+			<%= submit_tag 'Save', id: :save%>	
+		<% end %>
+
+</div>

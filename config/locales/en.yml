@@ -1,0 +1,18 @@
+en:
+  hello: "Hello world"
+
+  projects:
+    index:
+      filter: "filters projects on"
+      name_contains: "name contains"
+      creator_name: "creator name"
+      release_version: "release version"
+      name: "Name"
+      start_date: "Start Date"
+      end_date: "End Date"
+      creator: "Creator"
+      show: "Show"
+      edit: "Edit"
+      destroy: "Destroy"
+      confirm: "Are you sure?"
+      new_project: "New Project"

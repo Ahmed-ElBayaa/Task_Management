@@ -1,0 +1,33 @@
+<P> tasks of <%= @project.name%></P>
+<ul>
+	<% @project.releases.each do |release| %>
+		<li> <%= release.version %>
+				<ul>
+					<% release.sprints.each do |sprint| %>
+						<li> sprint <%=sprint.start_date%> to <%=sprint.end_date%>
+							<ul>
+								<% sprint.tasks.each do |task| %>
+									<li>
+										<p>
+										  <b>Subject:</b>
+										  <%= task.subject %>
+										</p>
+
+										<p>
+										  <b>Status:</b>
+										  <%= task.status %>
+										</p>
+
+										<p>
+										  <b>Description:</b>
+										  <%= task.description %>
+										</p>
+									</li>
+								<% end %>
+							</ul>
+						</li>
+					<% end %>
+				</ul>
+		</li>
+	<% end %>
+</ul>

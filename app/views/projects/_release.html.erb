@@ -1,0 +1,15 @@
+<li class="hide_this">
+	<h4> 
+	  release
+	  <%= b.link_to_remove "remove"%>
+	</h4>
+
+	<%= b.label :version %>
+	<%= b.text_field :version %> <br/>
+	    
+	<%= b.label :start_date %>
+	<%= b.text_field :start_date, class: :date %> <br/>
+
+	<%= b.label :end_date %>
+	<%= b.text_field :end_date, class: :date %><br/>
+</li>

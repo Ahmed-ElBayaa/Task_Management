@@ -1,0 +1,34 @@
+<%= nested_form_for(@release) do |f| %>
+  <% if @release.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@release.errors.count, "error") %> prohibited this release from being saved:</h2>
+
+      <ul>
+      <% @release.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :project_id , value: @project_id %>
+
+  <div class="field">
+    <%= f.label :version %><br />
+    <%= f.text_field :version %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.text_field :start_date, class: :date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.text_field :end_date, class: :date %>
+  </div>
+  
+  <%= render '/layouts/nested_attributes', f: f, assoc: :sprints %>
+
+  <div class="actions">
+    <%= f.submit() %>
+  </div>
+<% end %>

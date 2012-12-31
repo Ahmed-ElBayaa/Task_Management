@@ -1,0 +1,49 @@
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @project.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @project.end_date %>
+</p>
+
+<ul>
+	<% counter = 0%>
+	<% @project.releases.each do |release| %>
+		<li>
+			<% counter += 1%>
+			<h4> 
+				release <%= counter %> 
+				<%= link_to 'Show', release %> |
+				<%= link_to 'Edit', edit_release_path(release) %> |
+				<!--<%= link_to 'Delete', release , method: :delete %>-->
+			</h4>
+			<p> <b> version:   </b> <%=release.version%>    </p>
+			<p> <b> started at:</b> <%=release.start_date%> </p>
+			<p> <b> ended at:  </b> <%=release.end_date%>    </p>			    
+		</li>
+	<% end %>
+</ul>
+
+
+
+<%= form_tag new_release_path , method: :get do %>
+	<%= hidden_field_tag :project_id, @project.id %>
+	<%= submit_tag 'Add new release' %>
+<% end %>
+
+<%= form_tag new_members_project_path , method: :get do %>
+	<%= hidden_field_tag :project_id, @project.id %>
+	<%= submit_tag 'project members' %>
+<% end %>
+<br/>
+
+<%= link_to 'View Tasks', tasks_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

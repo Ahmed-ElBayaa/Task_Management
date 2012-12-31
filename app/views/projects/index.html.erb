@@ -1,0 +1,48 @@
+<h1>Listing projects</h1>
+
+<fieldset class="projects-filters">
+  <% c_id = params[:search][:creator_id_eq] if params[:search] %>
+  <legend> <%= t('.filter') %> </legend>
+  <%= form_for @search, url: projects_path, :html => {:method => :get} do |f| %>
+    <%= f.label :name_contains, t('.name_contains') %>
+    <%= f.text_field :name_contains %><br />
+    <%= f.label :creator_name, t('.creator_name') %>
+    <%= f.select :creator_id_eq,
+          options_for_select(Admin.all.collect {|p| [ p.name, p.id ] }, c_id),
+            include_blank: true %> <br/>
+    <%= f.label :release_version, t('.release_version') %>
+    <%= f.text_field :releases_version_contains %> <br/>      
+    <%= f.submit %>
+  <% end %>
+</fieldset>
+
+<table>
+  <tr>
+    <th><%= t('.name') %></th>
+    <th><%= t('.start_date') %></th>
+    <th><%= t('.end_date') %></th>
+    <th><%= t('.creator') %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @projects.each do |project| %>
+<% project.reload %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.start_date %></td>
+    <td><%= project.end_date %></td>
+    <td><%= User.find(project.creator_id).name %></td>
+    <td><%= link_to t('.show'), project %></td>
+    <td><%= link_to t('.edit'), edit_project_path(project) %></td>
+    <td><%= link_to t('.destroy'), project, confirm: t('.confirm'), method: :delete %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t('.new_project'), new_project_path %>
+<%= will_paginate(@projects) %>

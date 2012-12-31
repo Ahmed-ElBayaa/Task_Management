@@ -1,0 +1,42 @@
+
+<p>
+  <b>Start date:</b>
+  <%= @sprint.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @sprint.end_date %>
+</p>
+
+<ul>
+	<% counter = 0%>
+	<% @sprint.tasks.each do |task| %>
+		<li>
+			<% counter += 1%>
+			<h4> 
+				task <%= counter %> 
+				<%= link_to 'Show', task %> |
+				<%= link_to 'Edit', edit_task_path(task) %> |
+				<!-- <%= link_to 'Delete', task , method: :delete %> -->
+			</h4>
+			<p> <b> Subject:</b> <%=task.subject%> </p>
+			<p> <b> Status: </b> <%=task.status%>  </p>
+			<p> 
+				<b> Description:</b> <br/>
+				<%=task.description%>
+			</p>
+
+		</li>
+	<% end %>
+</ul>
+
+
+<%= form_tag new_task_path , method: :get do %>
+	<%= hidden_field_tag :sprint_id, @sprint.id %>
+	<%= submit_tag 'Add new task' %>
+<% end %>
+<br/>
+
+<%= link_to 'Edit', edit_sprint_path(@sprint) %> |
+<%= link_to 'Back', release_path(@sprint.release_id) %>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Management</title>
+  
+   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
+
+	<%= javascript_include_tag "application",
+	 	"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="top_banner">
+	<table width="100%">
+		<tr>
+			<td>
+				<ul class="navigation">
+					<li> <%= link_to 'projects',projects_path %> </li>
+					<li> <%= link_to 'users',users_path %> </li>
+				</ul>
+			</td>
+			<td>
+				<p class="auth">
+					<% if user_signed_in? %>
+						Welcome, <%= current_user.name %>. 
+						<%= link_to 'Edit account',edit_user_registration_path %>
+						<%= link_to 'Sign out',destroy_user_session_path, method: :delete %>
+					<% else %>
+							<%= link_to 'Sign in',new_user_session_path%> ,don't have an account .. 
+							<%= link_to 'Sign up',new_user_registration_path %>
+					<% end %>
+				</p>
+			</td>
+		</tr>
+	</table>
+</div>
+<div id="left_banner">
+	
+</div>
+<div id="main">
+	<% if notice %> <p id="notice"><%= notice %></p> <% end %>
+
+	<%= yield %>
+</div>
+
+<div id="bottom_banner">
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+
+<ul>
+	<% counter = 0%>
+    <%= f.fields_for :comments do |b| %>
+      <li class="hide_this">
+      	<% counter += 1%>
+		<h4> 
+		  comment <%= counter %>
+		  <%= link_to_remove_fields "remove", b %>
+		</h4>
+
+		<%= b.text_field :content %>       
+		
+      </li>
+    <% end %>
+</ul>

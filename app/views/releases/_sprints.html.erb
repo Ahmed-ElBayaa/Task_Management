@@ -1,0 +1,19 @@
+
+<ul>
+	<% counter = 0%>
+    <%= f.fields_for :sprints do |b| %>
+      <li class="hide_this">
+      	<% counter += 1%>
+		<h4> 
+		  sprint <%= counter %>
+		  <%= link_to_remove_fields "remove", b %>
+		</h4>
+		
+		<%= b.label :start_date %>
+		<%= b.text_field :start_date, class: :date %> <br/>
+
+		<%= b.label :end_date %>
+		<%= b.text_field :end_date, class: :date %> <br/>        
+      </li>
+    <% end %>
+</ul>

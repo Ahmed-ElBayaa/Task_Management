@@ -1,0 +1,23 @@
+<li class="hide_this">
+	<h4> 
+	  task
+	  <%= b.link_to_remove "remove"%>
+	</h4>
+
+	<%= b.label :subject %>
+	<%= b.text_field :subject %> <br/>
+
+	<%= b.label :status %>
+	<%= b.select :status, Task::AVAILABLE_STATUS, prompt: "state the status of the task" %> <br/>
+
+	<%= b.label :assignee_id %>
+	<%= b.select :assignee_id, 
+	      options_from_collection_for_select(
+	      Release.find(@release_id).project_members, "id","name")%>
+	<br/>
+
+	<%= b.label :description %><br/>
+	<%= b.text_area :description %><br/>       
+
+	<%= b.file_field :attachment %>
+</li>

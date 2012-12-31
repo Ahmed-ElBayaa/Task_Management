@@ -1,0 +1,35 @@
+<p>
+  <b>Subject:</b>
+  <%= @task.subject %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task.status %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+
+<ul>
+	<% @task.comments.each do |comment| %>
+		<li> <p>  <%=comment.content%> </p> </li>
+	<% end %>
+</ul>
+
+<% if @task.attachment.size%>
+<%= link_to 'See attachment', @task.attachment.url(:original), target: "_blank" %>
+<% end %>
+
+
+<%= form_tag new_comment_path , method: :get do %>
+	<%= hidden_field_tag :task_id, @task.id %>
+	<%= submit_tag 'Add new comment' %>
+<% end %>
+<br/>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', sprint_path(@task.sprint_id) %>

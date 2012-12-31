@@ -1,0 +1,40 @@
+<p>
+  <b>Version:</b>
+  <%= @release.version %>
+</p>
+<p>
+  <b>Start date:</b>
+  <%= @release.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @release.end_date %>
+</p>
+
+<ul>
+	<% counter = 0%>
+	<% @release.sprints.each do |sprint| %>
+		<li>
+			<% counter += 1%>
+			<h4> 
+				sprint <%= counter %> 
+				<%= link_to 'Show', sprint %> |
+				<%= link_to 'Edit', edit_sprint_path(sprint) %> |
+				<!-- <%= link_to 'Delete', sprint , method: :delete %> -->
+			</h4>
+			<p> <b> started at:</b> <%=sprint.start_date%> </p>
+			<p> <b> ended at:  </b> <%=sprint.end_date%>    </p>			    
+		</li>
+	<% end %>
+</ul>
+
+
+<%= form_tag new_sprint_path , method: :get do %>
+	<%= hidden_field_tag :release_id, @release.id %>
+	<%= submit_tag 'Add new sprint' %>
+<% end %>
+<br/>
+
+<%= link_to 'Edit', edit_release_path(@release) %> |
+<%= link_to 'Back', project_path(@release.project_id) %>

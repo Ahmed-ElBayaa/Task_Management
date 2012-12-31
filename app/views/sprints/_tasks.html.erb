@@ -1,0 +1,22 @@
+
+<ul>
+	<% counter = 0%>
+    <%= f.fields_for :tasks do |b| %>
+      <li class="hide_this">
+      	<% counter += 1%>
+		<h4> 
+		  task <%= counter %>
+		  <%= link_to_remove_fields "remove", b %>
+		</h4>
+		
+		<%= b.label :subject %>
+		<%= b.text_field :subject %> <br/>
+
+		<%= b.label :status %>
+    	<%= b.text_field :status %> <br/>
+
+		<%= b.label :description %>
+    	<%= b.text_area :description %><br/>       
+      </li>
+    <% end %>
+</ul>

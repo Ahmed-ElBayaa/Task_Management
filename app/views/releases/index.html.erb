@@ -1,0 +1,27 @@
+<h1>Listing releases</h1>
+
+<table>
+  <tr>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Version</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @releases.each do |release| %>
+  <tr>
+    <td><%= release.start_date %></td>
+    <td><%= release.end_date %></td>
+    <td><%= release.version %></td>
+    <td><%= link_to 'Show', release %></td>
+    <td><%= link_to 'Edit', edit_release_path(release) %></td>
+    <td><%= link_to 'Destroy', release, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Release', new_release_path %>

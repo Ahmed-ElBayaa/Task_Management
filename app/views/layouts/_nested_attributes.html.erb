@@ -1,0 +1,8 @@
+<% partial = assoc.to_s.singularize %>
+
+<ul class="nested_attributes">
+	<%= f.fields_for assoc do |b| %>
+	  <%= render "#{partial}", b: b %>
+	<% end %>
+</ul>
+<p><%= f.link_to_add "Add "+partial, assoc %></p>
